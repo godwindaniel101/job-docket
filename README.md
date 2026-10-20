@@ -2,22 +2,60 @@
 
 A Chrome side panel that works a job page the way you would. It reads the page, decides the next click, tailors a copy of your master CV, fills the form, and stops the moment a person is needed: a captcha, a sign-in, a question the CV cannot answer, or the step before anything is sent.
 
-The thinking runs on Claude Code already signed in on this Mac. No API key, no second subscription.
+The thinking runs on an AI coding CLI you have already signed into — Claude Code, or Codex as a fallback. No API key, no second subscription, nothing sent to a server of mine.
 
-## Install
+## What you need first
+
+- **Google Chrome** 120 or newer.
+- **Node.js** 18 or newer. `node --version` to check; [nodejs.org](https://nodejs.org) if you have none.
+- **[Claude Code](https://claude.com/claude-code)**, installed and signed in. `claude --version` should answer. Codex works too.
+- macOS or Linux. Windows needs a different native-messaging path and is not wired up yet — pull requests welcome.
+
+## Add it to Chrome
+
+**1. Get the code and register the bridge.**
 
 ```sh
+git clone https://github.com/godwindaniel101/job-docket.git
+cd job-docket
 npm install
-node bridge/install-host.mjs     # registers the bridge Chrome talks to
+node bridge/install-host.mjs
 ```
 
-Then:
+That last command writes a small file telling Chrome it is allowed to talk to the AI CLI on your machine. It prints the path it registered.
 
-1. Open `chrome://extensions`, turn on Developer mode, choose **Load unpacked**, select the `extension` folder.
-2. Quit Chrome completely and open it again. Chrome only picks up a new bridge at startup.
-3. Pin Job Docket and click the icon.
+**2. Load the extension.**
 
-The dot in the panel is green when the bridge answers.
+1. Open a new tab and go to `chrome://extensions`.
+2. Turn on **Developer mode** — the switch is in the top right.
+3. Click **Load unpacked** — top left.
+4. Pick the **`extension`** folder inside the project you just cloned. Not the project folder itself, the `extension` folder inside it.
+5. "Job Docket" appears in the list. Leave the ID alone — the bridge is registered against it.
+
+**3. Restart Chrome properly.**
+
+Quit Chrome completely — `Cmd+Q` on a Mac, not just closing the window — then open it again. Chrome only looks for new native-messaging hosts at startup, so skipping this is the single most common reason the panel says it cannot see the bridge.
+
+**4. Open the panel.**
+
+Click the puzzle-piece icon in the toolbar, pin **Job Docket**, then click its icon. The side panel opens.
+
+**5. Check it.**
+
+Press **Check setup** in the panel. It runs five checks — bridge, agent, working tab, page reading, page control — and prints the exact error for whichever one fails. Five ticks means you are ready.
+
+Then upload your CV, and open the gear to fill in the answers every form asks for.
+
+### When something is wrong
+
+| What you see | What to do |
+| --- | --- |
+| "Chrome cannot see the agent bridge" | Run `node bridge/install-host.mjs` again, then quit Chrome fully and reopen. |
+| The dot beside the tab name is red | No AI CLI found. Check `claude --version` answers in a terminal. |
+| "Chrome blocks extensions on this page" | You are on a `chrome://` page or the Web Store. Open the job on its own site. |
+| Nothing happens when you press a chip | Right-click inside the panel, choose Inspect, and read the Console. Please open an issue with what it says. |
+
+After pulling new code, return to `chrome://extensions` and press the reload arrow on the Job Docket card.
 
 ## Use it
 
