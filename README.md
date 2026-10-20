@@ -9,7 +9,7 @@ The thinking runs on an AI coding CLI you have already signed into — Claude Co
 - **Google Chrome** 120 or newer.
 - **Node.js** 18 or newer. `node --version` to check; [nodejs.org](https://nodejs.org) if you have none.
 - **[Claude Code](https://claude.com/claude-code)**, installed and signed in. `claude --version` should answer. Codex works too.
-- macOS or Linux. Windows needs a different native-messaging path and is not wired up yet — pull requests welcome.
+- macOS or Linux. The installer registers the bridge with Chrome, Chromium, Brave, Edge and Arc, whichever it finds. Windows is not wired up yet — pull requests welcome.
 
 ## Add it to Chrome
 
@@ -22,7 +22,7 @@ npm install
 node bridge/install-host.mjs
 ```
 
-That last command writes a small file telling Chrome it is allowed to talk to the AI CLI on your machine. It prints the path it registered.
+That last command writes a small file telling Chrome it is allowed to talk to the AI CLI on your machine. It prints every path it registered, one per browser it found.
 
 **2. Load the extension.**
 
