@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Job Docket</title>
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <header class="bar">
+    <div class="brand">
+      <span class="mark"></span>
+      <span>Job Docket</span>
+    </div>
+    <div class="bar-right">
+      <button id="queue-toggle" class="pill" type="button" aria-expanded="false">Queue <span id="queue-count">0</span></button>
+      <button id="rules-open" class="icon" type="button" title="Rules and profile" aria-label="Rules and profile">&#9881;</button>
+    </div>
+  </header>
+
+  <div id="tabline" class="tabline">
+    <span id="conn" class="dot" title="Agent bridge"></span>
+    <button id="tab-chip" class="tab-chip" type="button" title="Show me the tab the docket is working in">No tab yet</button>
+    <button id="tab-use" class="icon small" type="button" title="Work in the tab in front instead">&#8646;</button>
+    <span id="status" class="status">Ready</span>
+  </div>
+
+  <section id="drawer" class="drawer" hidden>
+    <div class="drawer-head">
+      <div class="drawer-tabs">
+        <button class="drawer-tab is-on" data-pane="queue" type="button">Queue</button>
+        <button class="drawer-tab" data-pane="filed" type="button">Filed</button>
+        <button class="drawer-tab" data-pane="cv" type="button">CV</button>
+      </div>
+      <button id="drawer-close" class="icon" type="button" aria-label="Close">&times;</button>
+    </div>
+    <div id="pane-queue" class="pane"></div>
+    <div id="pane-filed" class="pane" hidden></div>
+    <div id="pane-cv" class="pane" hidden></div>
+  </section>
+
+  <main id="feed" class="feed" aria-live="polite"></main>
+
+  <footer class="composer">
+    <div id="chips" class="chips"></div>
+    <form id="say-form" class="say">
+      <textarea id="say-input" rows="1" placeholder="Find backend roles in Lagos, or open this page and apply"></textarea>
+      <button id="say-send" class="send" type="submit" aria-label="Send">&#8593;</button>
+    </form>
+  </footer>
+
+  <input id="cv-file" class="hidden-input" type="file" accept=".pdf,.docx,.txt,.md,application/pdf,text/plain">
+  <script type="module" src="sidepanel.js"></script>
+</body>
+</html>

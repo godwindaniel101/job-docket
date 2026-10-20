@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Job Docket — setup</title>
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <div class="brand"><span class="mark"></span> Job Docket</div>
+      <nav class="tabs" id="tabs">
+        <button class="tab is-on" data-pane="you" type="button">You</button>
+        <button class="tab" data-pane="want" type="button">What you want</button>
+        <button class="tab" data-pane="refuse" type="button">What to refuse</button>
+        <button class="tab" data-pane="limits" type="button">Limits</button>
+        <button class="tab" data-pane="cv" type="button">Master CV</button>
+      </nav>
+      <span id="saved" class="saved" role="status">Saved</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="pane-you" class="pane">
+      <div class="card">
+        <h2>Who you are</h2>
+        <p class="hint">These answers go straight into application forms. Anything left blank becomes a question the docket has to stop and ask you.</p>
+        <div class="row">
+          <button id="reread" class="btn" type="button">Read these from my CV</button>
+          <span class="hint">Fills only what is still blank. Anything you typed stays.</span>
+        </div>
+        <div class="grid">
+          <label>Full name<input name="fullName" autocomplete="name" placeholder="Ada Lovelace"></label>
+          <label>Email<input name="email" type="email" autocomplete="email" placeholder="ada@example.com"></label>
+          <label>Phone<input name="phone" autocomplete="tel" placeholder="+234 ..."></label>
+          <label>Where you live<input name="location" placeholder="Lagos, Nigeria"></label>
+          <label>LinkedIn<input name="linkedin" placeholder="linkedin.com/in/..."></label>
+          <label>GitHub<input name="github" placeholder="github.com/..."></label>
+          <label>Website<input name="website" placeholder="adalovelace.dev"></label>
+        </div>
+      </div>
+      <div class="card">
+        <h2>The questions every form asks</h2>
+        <div class="grid">
+          <label>Allowed to work where you are
+            <select name="workAuth">
+              <option value="">Not said</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </label>
+          <label>Need visa sponsorship
+            <select name="sponsorship">
+              <option value="">Not said</option>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+            </select>
+          </label>
+          <label>Salary you want<input name="salary" placeholder="$120,000 or ₦...">
+          </label>
+          <label>Notice period<input name="notice" placeholder="1 month"></label>
+        </div>
+        <label class="full">A note you are happy to paste
+          <textarea name="coverNote" rows="3" placeholder="Only things you would say out loud in an interview."></textarea>
+        </label>
+      </div>
+    </section>
+
+    <section id="pane-want" class="pane" hidden>
+      <div class="card">
+        <h2>Roles to look for</h2>
+        <p class="hint">Type a title and press Enter. Leave it empty and the docket keeps every title it finds.</p>
+        <div class="tags" data-field="roles"></div>
+      </div>
+      <div class="card">
+        <h2>What makes a job worth it</h2>
+        <p class="hint">Preferences, not rules. A job is never refused just because one is missing — but the docket ranks on them and the CV leans into them. A plain company name here also makes the docket check that company's own careers board.</p>
+        <div class="tags" data-field="dos"></div>
+      </div>
+      <div class="card">
+        <h2>Boards and career pages to check</h2>
+        <p class="hint">One link per line. Greenhouse, Lever, Ashby, or any company careers page.</p>
+        <textarea name="boards" rows="5" placeholder="https://job-boards.greenhouse.io/example"></textarea>
+      </div>
+    </section>
+
+    <section id="pane-refuse" class="pane" hidden>
+      <div class="card">
+        <h2>Companies to avoid</h2>
+        <p class="hint">Never applied to, never queued. Matched loosely, so "Acme" also catches "Acme Group".</p>
+        <div class="tags" data-field="avoidCompanies"></div>
+      </div>
+      <div class="card">
+        <h2>Places to avoid</h2>
+        <p class="hint">A posting whose location matches any of these is skipped.</p>
+        <div class="tags" data-field="avoidRegions"></div>
+      </div>
+      <div class="card">
+        <h2>Deal breakers</h2>
+        <p class="hint">A posting is skipped when these words appear in it. The agent also skips a clear conflict written in other words.</p>
+        <div class="tags" data-field="donts"></div>
+      </div>
+    </section>
+
+    <section id="pane-limits" class="pane" hidden>
+      <div class="card">
+        <h2>How far it may go</h2>
+        <label class="check"><input name="pauseBeforeSubmit" type="checkbox"> <span><strong>Stop before anything is sent.</strong> The form gets filled, then it waits for you. Turning this off lets the docket press send on its own.</span></label>
+        <label class="check"><input name="showPointer" type="checkbox"> <span><strong>Show the pointer while it works.</strong> A cursor moves to each control and the control lights up before anything is clicked, so you can watch the run.</span></label>
+        <label class="check"><input name="skipPoorFit" type="checkbox"> <span><strong>Skip a poor match.</strong> If your CV cannot honestly support the role, move on instead of applying.</span></label>
+        <label class="narrow">Stop after this many sends in one run
+          <input name="maxApplications" type="number" min="1" max="50">
+        </label>
+        <label class="narrow">CV page size
+          <select name="pageSize">
+            <option value="a4">A4</option>
+            <option value="letter">US Letter</option>
+          </select>
+        </label>
+      </div>
+      <div class="card">
+        <h2>The agent on this Mac</h2>
+        <p class="hint">The thinking runs on an agent already signed in here. No API key.</p>
+        <label class="narrow">Who does the thinking
+          <select name="agent"><option value="auto">First one installed</option></select>
+        </label>
+        <div class="row">
+          <button id="test-agent" class="btn" type="button">Test the agent</button>
+          <span id="agent-status" class="hint"></span>
+        </div>
+      </div>
+    </section>
+
+    <section id="pane-cv" class="pane" hidden>
+      <div class="card">
+        <h2>Master CV</h2>
+        <p class="hint">Every tailored copy branches from this text, and nothing may be added to it. Edit it here, or upload a file in the side panel.</p>
+        <textarea name="masterCv" rows="22" placeholder="Paste the master CV."></textarea>
+        <p class="hint" id="cv-count"></p>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="options.js"></script>
+</body>
+</html>

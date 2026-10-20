@@ -1,0 +1,14 @@
+{
+  "name": "job-docket",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "e2e": "node test/e2e/apply.mjs",
+    "e2e:chrome": "npx @puppeteer/browsers install chrome@stable --path .chrome"
+  },
+  "devDependencies": {
+    "linkedom": "^0.18.12",
+    "puppeteer-core": "^24.43.1"
+  }
+}

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+  <base href="https://jobs.example/jobs/17">
+  <link rel="canonical" href="https://jobs.example/jobs/17">
+  <script type="application/ld+json">
+  {
+    "@type": "JobPosting",
+    "title": "Staff Engineer",
+    "hiringOrganization": {"name": "Northwind"},
+    "jobLocation": {"address": {"addressLocality": "Berlin", "addressCountry": "Germany"}},
+    "description": "Build TypeScript services. Remote-friendly within Germany.",
+    "url": "https://jobs.example/jobs/17"
+  }
+  </script>
+</head>
+<body>
+  <h1>Staff Engineer</h1>
+  <div class="location">Berlin, Germany</div>
+  <form>
+    <label for="name">Full name</label>
+    <input id="name" name="name" required>
+    <label for="email">Email</label>
+    <input id="email" type="email" name="email" required>
+    <label for="phone">Phone</label>
+    <input id="phone" name="phone">
+    <fieldset>
+      <legend>Are you authorized to work in the UK?</legend>
+      <label><input type="radio" name="auth" value="yes" required> Yes</label>
+      <label><input type="radio" name="auth" value="no"> No</label>
+    </fieldset>
+    <label for="why">Why do you want this role?</label>
+    <textarea id="why" name="why" required></textarea>
+    <label for="cv">Resume</label>
+    <input id="cv" type="file" name="resume" required>
+    <label><input type="checkbox" name="privacy" required> I agree to the privacy policy</label>
+    <button type="submit">Submit application</button>
+  </form>
+</body>
+</html>

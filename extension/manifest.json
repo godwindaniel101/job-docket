@@ -1,0 +1,53 @@
+{
+  "manifest_version": 3,
+  "name": "Job Docket",
+  "version": "0.3.0",
+  "description": "Reads the job page you are on, tailors your CV, fills the form, and stops before anything is sent.",
+  "minimum_chrome_version": "120",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArOvZY61rh/s4s2KUf0JSqmCJK9rB0P5hSjIGU2WWxaGlMVOjiHWKAy27Y5SXHUUxVP3AvKk9mUAtZgoRBfYMmG7AX56pNh3fgc8CyvaTNibLxi/s90QTWRxvCD449+zhdSKPZAC4OcjOnaUDiKWitlxBrbbcBd8VeT0ppv5dm0uRKMZAy7yxG9ujysAjEya0d56l3eUCJsw8dMn0gDqrJa7Fi/3kkCatKUg7KKEFVinSilleE7RkB/IIhWVVA0tBvPJvDBVrKslkggxbJIE8zAgqWavxc6Tau+OlY4pkabjcaJBLwlakfd7mBljUhUbPvoqRgyT7F7ZzEmJZmXGZUQIDAQAB",
+  "permissions": [
+    "storage",
+    "tabs",
+    "scripting",
+    "sidePanel",
+    "webNavigation",
+    "nativeMessaging"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Open Job Docket",
+    "default_icon": {
+      "32": "icons/icon32.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "icons": {
+    "32": "icons/icon32.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "content/page-agent.js"
+      ],
+      "all_frames": true,
+      "run_at": "document_idle"
+    }
+  ]
+}
